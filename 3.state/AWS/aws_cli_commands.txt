@@ -1,0 +1,39 @@
+###########################################
+# IMPORTANT
+###########################################
+# Use gitbash, WSL or Linux bash for these commands, else they will fail.
+# If you choose to use Powershell, you'll need to tweak the line breaks
+# and pick a different way of generating a random bucket name.
+
+
+###########################################
+# Lab Part 1, step 2.
+###########################################
+
+# Replace "vpc-state-<name>" below with "vpc-state-firstname-surname" and then run the command.
+# e.g. aws ec2 create-vpc --cidr-block 10.1.0.0/16 --tag-specification ResourceType=vpc,Tags=[{Key=Name,Value=vpc-state-mike-guy}]
+# If you don't have JQ installed, remove the pipe symbol (|) and everything after it, then manually find the ID.
+
+aws ec2 create-vpc \
+  --cidr-block 10.1.0.0/16 \
+  --tag-specification "ResourceType=vpc,Tags=[{Key=Name,Value=vpc-state-<name>}]" \
+  | jq -r ".Vpc.VpcId"
+
+
+
+###########################################
+# Lab Part 3, step 1.
+###########################################
+# Note, this doesn't guarantee a unique bucket name. 
+# If it fails, re-run a couple of times to generate new random data till it succeeds.
+# Note the bucket name - you'll need it shortly.
+
+aws s3 mb s3://$(tr -dc a-z0-9 </dev/urandom | head -c 13 ; echo '')
+
+
+###########################################
+# Lab Part 3, step 5.
+###########################################
+# Replace <bucket_name> with the bucket name created in lab part 3, step 1.
+
+aws s3 rb s3://<bucket_name> --force  
