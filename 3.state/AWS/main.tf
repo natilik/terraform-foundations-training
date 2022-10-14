@@ -17,11 +17,6 @@ terraform {
       version = "2.2.3"
     }
   }
-  backend "s3" {
-    bucket = "mikeguytest"
-    region = "eu-west-2"
-    key    = "terraform.tfstate"
-  }
 }
 
 # Empty block as Terraform is going to use the credentials
@@ -163,10 +158,4 @@ resource "aws_instance" "state_lab" {
 resource "local_file" "state_lab_delete_me" {
   content  = "The contents of this file should not be deleted!"
   filename = "./please_keep_me.txt"
-}
-
-provider "aws" {
-  region     = "us-west-2"
-  access_key = var.access_key
-  secret_key = var.secret_key
 }

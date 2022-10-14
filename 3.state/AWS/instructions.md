@@ -17,11 +17,11 @@
 
 # Lab Part 2 - State Address Changes
 
-1. In your main.tf, change the name lab assigned to the instance/virtual machine so that it is something other than “state_lab”. 
+1. In your main.tf, change the name label assigned to the instance/virtual machine so that it is something other than “state_lab”. 
 
 2. Once you’ve changed the label in main.tf, use the relevant sub-command of “terraform state” to change the address of the resource in the state file, without needing to delete and recreate it.
 
-3. After making the change above, run a “terraform plan” – there should be no changes to make.
+3. After making the change above, run a “terraform plan”. You’ll receive an error. Read the error, understand why it is being generated and fix the problem. Once fixed, you should be able to run “terraform plan” and there will be no changes to make.
 
 4. There is a resource with the name “state_lab_delete_me” – remove this from Terraform’s management without deleting the actual file – ensure a plan/apply has no changes to make after you’re done. Don’t destroy anything yet – there is a third and final part to this lab.
 
@@ -38,7 +38,7 @@
 
 4. Delete your local state files – does a plan/apply still work?
 
-5. Destroy your infrastructure and then delete the storage account/S3 bucket:
+5. Destroy your infrastructure (“terraform destroy”), then delete the storage account/S3 bucket:
     * AWS – See “aws_cli_commands.txt”.
     * Azure – See “az_cli_commands.txt”.
 
