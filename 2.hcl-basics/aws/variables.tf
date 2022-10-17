@@ -8,3 +8,8 @@ variable "student_name" {
     error_message = "The variable student_name should not contain a space."
   }
 }
+
+variable "instance_size" {
+  type    = string
+  default = "t3.micro"
+}

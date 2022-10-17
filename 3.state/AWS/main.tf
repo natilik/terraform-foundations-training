@@ -17,6 +17,11 @@ terraform {
       version = "2.2.3"
     }
   }
+  backend "s3" {
+    bucket = "somebucketname"
+    key    = "terraform.tfstate"
+    region = "eu-west-2"
+  }
 }
 
 # Empty block as Terraform is going to use the credentials
@@ -50,12 +55,15 @@ data "http" "current_ip" {
 ########################################
 # Networking
 ########################################
-resource "aws_vpc" "state_lab" {
-  # IMPORT_ME
+resource "aws_vpc" "another_name_label" {
+  cidr_block = "10.1.0.0/16"
+  tags = {
+    Name = "vpc-somename"
+  }
 }
 
 resource "aws_subnet" "state_lab" {
-  vpc_id                  = aws_vpc.state_lab.id
+  vpc_id                  = aws_vpc.another_name_label.id
   cidr_block              = "10.1.1.0/24"
   map_public_ip_on_launch = true
   tags = {
@@ -64,14 +72,14 @@ resource "aws_subnet" "state_lab" {
 }
 
 resource "aws_internet_gateway" "state_lab" {
-  vpc_id = aws_vpc.state_lab.id
+  vpc_id = aws_vpc.another_name_label.id
   tags = {
     Name = "igw-state-lab-${var.student_name}"
   }
 }
 
 resource "aws_route_table" "state_lab" {
-  vpc_id = aws_vpc.state_lab.id
+  vpc_id = aws_vpc.another_name_label.id
   route {
     cidr_block = "0.0.0.0/0"
     gateway_id = aws_internet_gateway.state_lab.id
@@ -92,7 +100,7 @@ resource "aws_route_table_association" "state_lab" {
 resource "aws_security_group" "state_lab" {
   name        = "PermitLabAccess"
   description = "Allow accses to VM from current public IP."
-  vpc_id      = aws_vpc.state_lab.id
+  vpc_id      = aws_vpc.another_name_label.id
   ingress {
     description = "PermitSSH"
     from_port   = 22
@@ -155,7 +163,7 @@ resource "aws_instance" "state_lab" {
 ########################################
 # Dummmy file
 ########################################
-resource "local_file" "state_lab_delete_me" {
-  content  = "The contents of this file should not be deleted!"
-  filename = "./please_keep_me.txt"
-}
+# resource "local_file" "state_lab_delete_me" {
+#   content  = "The contents of this file should not be deleted!"
+#   filename = "./please_keep_me.txt"
+# }

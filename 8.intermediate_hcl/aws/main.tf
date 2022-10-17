@@ -18,7 +18,7 @@ provider "aws" {
 }
 
 locals {
-  bucket_name = # Fill me in
+  bucket_name = "${random_string.bucket_prefix.result}-${lower(var.student_name)}"
   common_tags = {
     deployer    = "terraform"
     cost_centre = "abc1234"
@@ -27,22 +27,34 @@ locals {
 }
 
 resource "random_string" "bucket_prefix" {
-  length  = 10
+  length  = var.random_string_length
   special = false
   upper   = false
 }
 
 resource "aws_s3_bucket" "bucket" {
-  bucket = local.bucket_name
-  tags = {
-    "Name" = local.bucket_name
-  }
+  count  = 2
+  bucket = "${local.bucket_name}-${count.index}"
+  tags = merge(
+    {
+      "Name" = "${local.bucket_name}-${count.index}"
+    },
+    local.common_tags
+  )
 }
 
 # Used in lab part 2, task 3.
-# resource "aws_s3_bucket" "additional_bucket" {
-#   bucket = "${local.bucket_name}-additional"
-#   tags = {
-#     "Name" = local.bucket_name
-#   }
-# }
+resource "aws_s3_bucket" "additional_bucket" {
+  count  = var.additional_bucket_enabled ? 1 : 0
+  bucket = "${local.bucket_name}-additional"
+  tags = {
+    "Name" = local.bucket_name
+  }
+  dynamic "cors_rule" {
+    for_each = var.cors_rules
+    content {
+      allowed_methods = cors_rule.value.allowed_methods
+      allowed_origins = cors_rule.value.allowed_origins
+    }
+  }
+}

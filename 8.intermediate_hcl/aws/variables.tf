@@ -9,27 +9,29 @@ variable "student_name" {
   }
 }
 
-variable "environment" {}
+variable "environment" {
+  type = string
+}
 
 # Used in lab part 1, task 6 
-# variable "random_string_length" {
-#   description = "The length of the random string to be created. Must be a value between 5 and 10."
-#   type        = number
-#   validation {
-#     condition     = # fill me in
-#     error_message = "The value of random_string_length should be between 5 and 10."
-#   }
-# }
+variable "random_string_length" {
+  description = "The length of the random string to be created. Must be a value between 5 and 10."
+  type        = number
+  validation {
+    condition     = var.random_string_length >= 5 && var.random_string_length <= 10
+    error_message = "The value of random_string_length should be between 5 and 10."
+  }
+}
 
 
 # Used in lab part 2, task 3
-# variable "additional_bucket_enabled" {
-#   description = "Whether to enable an additional bucket."
-#   type        = bool
-# }
+variable "additional_bucket_enabled" {
+  description = "Whether to enable an additional bucket."
+  type        = bool
+}
 
 # Used in lab part 2, task 4
-# variable "cors_rules" {
-#   description = "CORS rules for dynamic use in bucket."
-#   type        = set(map(list(string)))
-# }
+variable "cors_rules" {
+  description = "CORS rules for dynamic use in bucket."
+  type        = set(map(list(string)))
+}

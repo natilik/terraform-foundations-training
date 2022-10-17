@@ -143,11 +143,11 @@ resource "aws_network_interface" "hcl_basics_lab" {
 
 resource "aws_instance" "hcl_basics_lab" {
   ami           = data.aws_ami.ubuntu.id
-  instance_type = "t3.micro"
+  instance_type = var.instance_size
   key_name      = aws_key_pair.hcl_basics_lab.key_name
   network_interface {
     device_index         = 0
-    network_interface_id = # REPLACE_ME
+    network_interface_id = aws_network_interface.hcl_basics_lab.id
   }
   tags = {
     Name = "ec2-hcl-basics-lab-${var.student_name}"

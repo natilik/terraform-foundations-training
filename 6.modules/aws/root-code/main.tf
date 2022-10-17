@@ -10,23 +10,27 @@ terraform {
 provider "aws" {}
 
 module "networking" {
-  source = "../modules/aws_networking"
-
-  # Populate me with the required variable inputs.
+  source       = "../modules/aws_networking"
+  student_name = var.student_name
 }
 
 module "ec2" {
-  source = "../modules/aws_ec2"
-
-  # Populate me with the required variable inputs.
-  # Consider a variable input here likely depends on an output from networking.
+  source       = "../modules/aws_ec2"
+  student_name = var.student_name
+  vpc_id       = module.networking.vpc_id
+  subnet_id    = module.networking.subnet_id
 }
 
-output "ec2_ip" {
-  value = # Fill me in
+output "public_ip" {
+  value = module.ec2.public_ip
 }
 
+output "ssh_command" {
+  description = "The SSH command to connect to the newly created instance."
+  value       = "ssh -i ${local_file.hcl_basics_lab.filename} ubuntu@${module.ec2.public_ip}"
+}
 
-# This will define one resource type in addition to module calls - local_file.
-# local_file should write the output of the tls_private_key from the ec2 module to a file.
-# Have a think about how you will need to do this.
+resource "local_file" "hcl_basics_lab" {
+  content  = module.ec2.tls_private_key
+  filename = "./vm-private-key.pem"
+}
