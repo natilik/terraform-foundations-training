@@ -22,11 +22,16 @@ module "ec2" {
   # Consider a variable input here likely depends on an output from networking.
 }
 
-output "ec2_ip" {
+output "public_ip" {
   value = # Fill me in
 }
 
+output "ssh_command" {
+  description = "The SSH command to connect to the newly created instance."
+  value       = "ssh -i ${local_file.hcl_basics_lab.filename} ubuntu@${module.ec2.public_ip}"
+}
 
-# This will define one resource type in addition to module calls - local_file.
-# local_file should write the output of the tls_private_key from the ec2 module to a file.
-# Have a think about how you will need to do this.
+resource "local_file" "hcl_basics_lab" {
+  content  = # Fill me in
+  filename = "./vm-private-key.pem"
+}

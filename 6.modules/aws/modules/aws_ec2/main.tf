@@ -7,11 +7,10 @@ terraform {
   }
 }
 
-provider "aws" {}
-
 # Create your EC2 resources here - based on your working code from the hcl_basics lab.
 
 # This file should contain the following resources:
+#   * The http.current_ip data object.
 #   * The aws_ami.ubunut data object.
 #   * The aws_security_group resource.
 #   * The tls_private_key resource.
