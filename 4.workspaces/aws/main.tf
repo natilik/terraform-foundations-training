@@ -9,20 +9,24 @@ terraform {
 
 # Don't worry about these locals just yet - we will look at these later in the course.
 locals {
-  cidr_blocks = {
-    default = "10.100.0.0/16"
-    env1    = "10.101.0.0/16"
-    env2    = "10.102.0.0/16"
+  bucket_names = {
+    default = "${random_string.workspaces_lab.result}-${var.student_name}-default"
+    env1    = "${random_string.workspaces_lab.result}-${var.student_name}-env1"
+    env2    = "${random_string.workspaces_lab.result}-${var.student_name}-env2"
   }
 }
 
-########################################
-# Networking
-########################################
-resource "aws_vpc" "workspaces_lab" {
-  cidr_block = lookup(local.cidr_blocks, terraform.workspace)
+resource "random_string" "workspaces_lab" {
+  length  = 10
+  special = false
+  upper   = false
+}
+
+resource "aws_s3_bucket" "workspaces_lab" {
+  bucket = lookup(local.bucket_names, terraform.workspace)
   tags = {
-    Name = "vpc-workspaces-lab-${var.student_name}-${terraform.workspace}"
+    Name = lookup(local.bucket_names, terraform.workspace)
   }
 }
+
 

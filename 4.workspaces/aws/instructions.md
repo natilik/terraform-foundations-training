@@ -6,11 +6,11 @@ Main focus is on the use of “terraform.workspace” in conjunction with the wo
 
 2. Issue the “terraform workspace list” command to validate you just have the one, default, workspace.
 
-3. Run an init/plan/apply from the default workspace and keep an eye on your local state file, the CIDR which was selected and the value of the VPC’s name tag.
+3. Run an init/plan/apply from the default workspace and keep an eye on your local state file, the bucket name which was selected and the value of the name tag.
 
 4. Create two new workspaces named env1 and env2 – do you notice a new directory?
 
-5. Select (“terraform workspace select <name>”) each of these workspaces in turn and run another plan/apply – again, keep an eye on your state files, the selected CIDR and the name tags.
+5. Select (“terraform workspace select <name>”) each of these workspaces in turn and run another plan/apply – again, keep an eye on your state files, the selected bucket name and the name tags.
 
 6. Select your default workspace again and try to delete workspace “env2” – what happens?
 
