@@ -7,6 +7,10 @@ terraform {
   }
 }
 
+provider "aws" {
+  profile = "training"
+}
+
 # Don't worry about these locals just yet - we will look at these later in the course.
 locals {
   bucket_names = {

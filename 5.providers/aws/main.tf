@@ -12,7 +12,8 @@ terraform {
 provider "random" {}
 
 provider "aws" {
-  region = "eu-west-1"
+  region  = "eu-west-1"
+  profile = "training"
 }
 
 # A NEW PROVIDER BLOCK IS REQUIRED HERE

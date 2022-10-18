@@ -21,7 +21,10 @@ terraform {
 
 # Empty block as Terraform is going to use the credentials
 # cached by running "aws configure".
-provider "aws" {}
+provider "aws" {
+  profile = "training"
+}
+
 provider "http" {}
 
 

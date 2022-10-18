@@ -7,7 +7,9 @@ terraform {
   }
 }
 
-provider "aws" {}
+provider "aws" {
+  profile = "training"
+}
 
 module "networking" {
   source = "../modules/aws_networking"
