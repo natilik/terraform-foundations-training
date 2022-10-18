@@ -22,7 +22,7 @@ locals {
 resource "aws_vpc" "workspaces_lab" {
   cidr_block = lookup(local.cidr_blocks, terraform.workspace)
   tags = {
-    Name = "vpc-hcl-basics-lab-${var.student_name}-${terraform.workspace}"
+    Name = "vpc-workspaces-lab-${var.student_name}-${terraform.workspace}"
   }
 }
 

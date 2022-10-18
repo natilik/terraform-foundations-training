@@ -126,7 +126,7 @@ resource "local_file" "hcl_basics_lab" {
 }
 
 resource "aws_key_pair" "hcl_basics_lab" {
-  key_name   = "hcl_basics_lab"
+  key_name   = "kp-hcl-basics-lab-${var.student_name}"
   public_key = tls_private_key.hcl_basics_lab.public_key_openssh
 }
 
