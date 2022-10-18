@@ -129,7 +129,7 @@ resource "local_file" "provisioner_lab" {
 }
 
 resource "aws_key_pair" "provisioner_lab" {
-  key_name   = "provisioner_lab"
+  key_name   = "kp-provisioner_lab-${var.student_name}"
   public_key = tls_private_key.provisioner_lab.public_key_openssh
 }
 

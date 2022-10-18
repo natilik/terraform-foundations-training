@@ -123,7 +123,7 @@ resource "local_file" "state_lab" {
 }
 
 resource "aws_key_pair" "state_lab" {
-  key_name   = "state_lab"
+  key_name   = "kp-state-lab-${var.student_name}"
   public_key = tls_private_key.state_lab.public_key_openssh
 }
 

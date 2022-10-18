@@ -26,7 +26,7 @@ resource "aws_secretsmanager_secret_policy" "versioning" {
   "Version": "2012-10-17",
   "Statement": [
     {
-      "Sid": "EnableAnotherAWSAccountToReadTheSecret",
+      "Sid": "TerraformVersioningLab",
       "Effect": "Allow",
       "Principal": {
         "AWS": "${data.aws_caller_identity.current.arn}"
