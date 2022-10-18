@@ -118,8 +118,9 @@ resource "tls_private_key" "state_lab" {
 }
 
 resource "local_file" "state_lab" {
-  content  = tls_private_key.state_lab.private_key_pem
-  filename = "./vm-private-key.pem"
+  content         = tls_private_key.state_lab.private_key_pem
+  file_permission = "600"
+  filename        = "./vm-private-key.pem"
 }
 
 resource "aws_key_pair" "state_lab" {

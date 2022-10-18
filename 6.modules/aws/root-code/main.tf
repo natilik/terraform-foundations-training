@@ -28,10 +28,11 @@ output "public_ip" {
 
 output "ssh_command" {
   description = "The SSH command to connect to the newly created instance."
-  value       = "ssh -i ${local_file.hcl_basics_lab.filename} ubuntu@${module.ec2.public_ip}"
+  value       = "ssh -i ${local_file.module_lab.filename} ubuntu@${module.ec2.public_ip}"
 }
 
-resource "local_file" "hcl_basics_lab" {
+resource "local_file" "module_lab" {
   content  = # Fill me in
+  file_permission = "600"
   filename = "./vm-private-key.pem"
 }
