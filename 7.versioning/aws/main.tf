@@ -9,6 +9,7 @@ terraform {
 
 provider "aws" {
   profile = "training"
+  region  = "eu-west-2"
 }
 
 data "aws_caller_identity" "current" {}

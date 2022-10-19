@@ -9,6 +9,7 @@ terraform {
 
 provider "aws" {
   profile = "training"
+  region = "eu-west-2"
 }
 
 module "networking" {

@@ -23,6 +23,7 @@ terraform {
 # cached by running "aws configure".
 provider "aws" {
   profile = "training"
+  region = "eu-west-2"
 }
 
 provider "http" {}

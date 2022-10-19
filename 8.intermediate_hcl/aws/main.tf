@@ -15,6 +15,7 @@ provider "random" {}
 
 provider "aws" {
   profile = "training"
+  region = "eu-west-2"
 }
 
 locals {

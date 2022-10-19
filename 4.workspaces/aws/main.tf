@@ -9,6 +9,7 @@ terraform {
 
 provider "aws" {
   profile = "training"
+  region  = "eu-west-2"
 }
 
 # Don't worry about these locals just yet - we will look at these later in the course.
