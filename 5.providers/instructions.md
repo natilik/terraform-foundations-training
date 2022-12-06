@@ -5,7 +5,7 @@
   * Azure – 3.34.0
 
 2. One provider block has been setup for you, you need to create a second to target a different area of the respective cloud:
-  * AWS – create an additional block targeting the region of “eu-west-1”.
+  * AWS – create an additional block targeting the region of “eu-west-2”.
   * Azure – create an additional provider block targeting a second subscription. 
     * Note: You’ll also need to populate the place holder for the <primary_subscription_id> as this was not known in advance.
 
