@@ -8,7 +8,6 @@ terraform {
       source  = "hashicorp/aws"
       version = "4.29.0"
     }
-    # AWS needs pinning to version 4.29.0
   }
 }
 
