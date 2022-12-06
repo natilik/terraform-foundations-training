@@ -51,7 +51,10 @@ data "http" "current_ip" {
 # Networking
 ########################################
 resource "aws_vpc" "state_lab" {
-  # IMPORT_ME
+  # IMPORT ME
+  # Create me manually using the instructions in aws_cli_commands.txt 
+  # then import to this empty placeholder. 
+  # Once imported, write the configuration to match the imported values.
 }
 
 resource "aws_subnet" "state_lab" {
