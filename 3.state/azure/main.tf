@@ -17,12 +17,6 @@ terraform {
       version = "2.2.3"
     }
   }
-  backend "azurerm" {
-    resource_group_name  = "rg-statefile-mike"
-    storage_account_name = "36s27jbr66qw4"
-    container_name       = "tfstate"
-    key                  = "terraform.tfstate"
-  }
 }
 
 # Empty block as Terraform is going to use the credentials
