@@ -3,6 +3,6 @@ output "tls_private_key" {
   sensitive = true
 }
 
-output "public_ip" {
+output "ec2_public_ip" {
   value = aws_instance.developing_modules_lab.public_ip
 }

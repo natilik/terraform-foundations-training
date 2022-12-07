@@ -15,19 +15,11 @@ module "networking" {
 }
 
 module "ec2" {
-  source       = "../modules/aws_ec2"
-  student_name = var.student_name
-  vpc_id       = module.networking.vpc_id
-  subnet_id    = module.networking.subnet_id
-}
-
-output "public_ip" {
-  value = module.ec2.public_ip
-}
-
-output "ssh_command" {
-  description = "The SSH command to connect to the newly created instance."
-  value       = "ssh -i ${local_file.module_lab.filename} ubuntu@${module.ec2.public_ip}"
+  source        = "../modules/aws_ec2"
+  student_name  = var.student_name
+  subnet_id     = module.networking.subnet_id
+  vpc_id        = module.networking.vpc_id
+  instance_size = "t3.micro"
 }
 
 resource "local_file" "module_lab" {
