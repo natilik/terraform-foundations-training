@@ -12,27 +12,20 @@ provider "aws" {}
 module "networking" {
   source = "../modules/aws_networking"
 
-  # Populate me with the required variable inputs.
+  # This section needs populating with the relevant variable inputs 
+  # that the networking module expects.
 }
 
 module "ec2" {
   source = "../modules/aws_ec2"
 
-  # Populate me with the required variable inputs.
-  # Consider a variable input here likely depends on an output from networking.
-}
-
-output "public_ip" {
-  value = # Fill me in
-}
-
-output "ssh_command" {
-  description = "The SSH command to connect to the newly created instance."
-  value       = "ssh -i ${local_file.module_lab.filename} ubuntu@${module.ec2.public_ip}"
+  # This section needs populating with the relevant variable inputs 
+  # that the networking module expects.
+  # If you get stuck, take a look at https://developer.hashicorp.com/terraform/language/expressions/references#child-module-outputs
 }
 
 resource "local_file" "module_lab" {
-  content  = # Fill me in
+  content         = module.ec2.tls_private_key
   file_permission = "600"
-  filename = "./vm-private-key.pem"
+  filename        = "./vm-private-key.pem"
 }
