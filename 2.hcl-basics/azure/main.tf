@@ -23,7 +23,6 @@ terraform {
 # cached by running "aws configure".
 provider "azurerm" {
   features {}
-  subscription_id = "773a1618-5939-4d95-9936-abe7aa63f157"
 }
 
 provider "http" {}
