@@ -6,17 +6,18 @@
   * Has a prefix that is the result of the random_string resource.
   * Has a suffix of the value that is provided by var.student_name.
     * e.g. awfiauvnau-mike-guy (Hint: a bit of string interpolation should help you here!)
-  * Note: The random provider doesn’t guarantee uniqueness – it is possible you could get an apply-time error. Pick any value for the variable “environment” – this will come into play in a bit.
+  * Note: The random provider doesn’t guarantee uniqueness – it is possible you could get an apply-time error. Pick any value for the variable “environment” – this will come into play in a bit. If you’re on Azure, you’ll have a bit more work to do as well due to naming restrictions (max characters and no dashes permitted).
 
 3. All seems good with your code, but you have realised users can provide their name in upper or camel-case. You want it all lower case. Is there a function that could help you fix this? Implement a fix and test it works as expected.
 
-4. You decide you want to apply some common tags to your bucket/storage account as well as a custom name tag. By modifying only the resource – find a function that can help merge the two togeter.
+4. You decide you want to apply some common tags to your bucket/storage account as well as a custom name tag. By modifying only the resource – find a function that can help merge the two together.
 
 5. You have noticed users have been using an input data type you didn’t expect for var.environment. Apply a suitable type constraint to the “environment” variable to ensure it can only ever be a string.
 
 6. Change the length value under the random_string resource to use a variable instead of a hardcoded value. Use a validation block and a suitable function to ensure the value provided is between 10 and 5. A placeholder has been created (commented out) in variables.tf to get you started.
 
 7. Don’t destroy your resources – we will use them in the second part of the lab coming up soon. You are finished for now.
+
 
 
 
@@ -37,4 +38,3 @@
     * https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/storage_account 
 
 5. Clean up your environment with a destroy.
-
