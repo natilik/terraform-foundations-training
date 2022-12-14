@@ -16,6 +16,10 @@ terraform {
       source  = "hashicorp/local"
       version = "2.2.3"
     }
+    random = {
+      source  = "hashicorp/random"
+      version = "3.4.3"
+    }
   }
 }
 
@@ -23,8 +27,16 @@ provider "azurerm" {
   features {}
 }
 
+provider "random" {}
+
+resource "random_string" "modules_lab" {
+  length  = 10
+  special = false
+  upper   = false
+}
+
 resource "azurerm_resource_group" "modules_lab" {
-  name     = "rg-hcl-basics-${var.student_name}"
+  name     = "rg-hcl-basics-${random_string.modules_lab.result}"
   location = "uksouth"
 }
 
