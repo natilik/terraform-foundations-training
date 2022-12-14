@@ -29,14 +29,14 @@ provider "azurerm" {
 
 provider "random" {}
 
-resource "random_string" "bucket_prefix" {
+resource "random_string" "modules_lab" {
   length  = 10
   special = false
   upper   = false
 }
 
 resource "azurerm_resource_group" "modules_lab" {
-  name     = "rg-hcl-basics-${random_string.bucket_prefix.result}"
+  name     = "rg-hcl-basics-${random_string.modules_lab.result}"
   location = "uksouth"
 }
 
