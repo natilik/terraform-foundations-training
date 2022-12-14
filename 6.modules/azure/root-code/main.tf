@@ -36,7 +36,7 @@ resource "random_string" "modules_lab" {
 }
 
 resource "azurerm_resource_group" "modules_lab" {
-  name     = "rg-hcl-basics-${random_string.modules_lab.result}"
+  name     = "rg-modules-${random_string.modules_lab.result}"
   location = "uksouth"
 }
 

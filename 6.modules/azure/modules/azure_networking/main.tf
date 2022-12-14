@@ -23,21 +23,21 @@ data "http" "current_ip" {
 # Networking
 ########################################
 resource "azurerm_virtual_network" "modules_lab" {
-  name                = "vnet-hcl-basics-${var.student_name}"
+  name                = "vnet-modules-${var.student_name}"
   resource_group_name = var.resource_group_name
   location            = var.location
   address_space       = ["10.1.0.0/16"]
 }
 
 resource "azurerm_subnet" "modules_lab" {
-  name                 = "snet-hcl-basics-${var.student_name}"
+  name                 = "snet-modules-${var.student_name}"
   resource_group_name  = var.resource_group_name
   virtual_network_name = azurerm_virtual_network.modules_lab.name
   address_prefixes     = ["10.1.1.0/24"]
 }
 
 resource "azurerm_network_security_group" "modules_lab" {
-  name                = "nsg-hcl-basics-${var.student_name}"
+  name                = "nsg-modules-${var.student_name}"
   resource_group_name = var.resource_group_name
   location            = var.location
   security_rule {
