@@ -16,6 +16,10 @@ terraform {
       source  = "hashicorp/local"
       version = "2.2.3"
     }
+    random = {
+      source  = "hashicorp/random"
+      version = "3.4.3"
+    }
   }
 }
 
@@ -23,11 +27,18 @@ provider "azurerm" {
   features {}
 }
 
-resource "azurerm_resource_group" "modules_lab" {
-  name     = "rg-hcl-basics-${var.student_name}"
-  location = "uksouth"
+provider "random" {}
+
+resource "random_string" "bucket_prefix" {
+  length  = 10
+  special = false
+  upper   = false
 }
 
+resource "azurerm_resource_group" "modules_lab" {
+  name     = "rg-hcl-basics-${random_string.bucket_prefix.result}"
+  location = "uksouth"
+}
 
 module "networking" {
   source = "../modules/azure_networking"
