@@ -118,7 +118,7 @@ resource "azurerm_network_interface" "state_lab" {
   }
 }
 
-resource "azurerm_linux_virtual_machine" "new_value" {
+resource "azurerm_linux_virtual_machine" "state_lab" {
   name                = "vm-state-${var.student_name}"
   resource_group_name = azurerm_resource_group.state_lab.name
   location            = azurerm_resource_group.state_lab.location
