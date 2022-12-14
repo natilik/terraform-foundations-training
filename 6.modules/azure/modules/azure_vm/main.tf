@@ -31,14 +31,14 @@ resource "local_file" "modules_lab" {
 # NIC, VM and Public IP
 ##################################
 resource "azurerm_public_ip" "modules_lab" {
-  name                = "pip-hcl-basics-${var.student_name}"
+  name                = "pip-modules-${var.student_name}"
   resource_group_name = var.resource_group_name
   location            = var.location
   allocation_method   = "Static"
 }
 
 resource "azurerm_network_interface" "modules_lab" {
-  name                = "nic-hcl-basics-${var.student_name}"
+  name                = "nic-modules-${var.student_name}"
   resource_group_name = var.resource_group_name
   location            = var.location
   ip_configuration {
@@ -50,7 +50,7 @@ resource "azurerm_network_interface" "modules_lab" {
 }
 
 resource "azurerm_linux_virtual_machine" "modules_lab" {
-  name                = "vm-hcl-basics-${var.student_name}"
+  name                = "vm-modules-${var.student_name}"
   resource_group_name = var.resource_group_name
   location            = var.location
   size                = "Standard_B1ls"
