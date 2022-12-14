@@ -20,7 +20,7 @@ terraform {
 }
 
 # Empty block as Terraform is going to use the credentials
-# cached by running "aws configure".
+# cached by running "az login".
 provider "azurerm" {
   features {}
 }
