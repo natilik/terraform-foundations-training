@@ -79,6 +79,11 @@ resource "azurerm_network_security_group" "provisioner_lab" {
   }
 }
 
+resource "azurerm_subnet_network_security_group_association" "provisioner_lab" {
+  subnet_id                 = azurerm_subnet.provisioner_lab.id
+  network_security_group_id = azurerm_network_security_group.provisioner_lab.id
+}
+
 ########################################
 # SSH Keys
 ########################################

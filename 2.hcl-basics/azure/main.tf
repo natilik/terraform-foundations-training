@@ -79,6 +79,12 @@ resource "azurerm_network_security_group" "hcl_basics_lab" {
   }
 }
 
+resource "azurerm_subnet_network_security_group_association" "hcl_basics_lab" {
+  subnet_id                 = azurerm_subnet.hcl_basics_lab.id
+  network_security_group_id = azurerm_network_security_group.hcl_basics_lab.id
+}
+
+
 ########################################
 # SSH Keys
 ########################################
