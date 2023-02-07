@@ -81,6 +81,11 @@ resource "azurerm_network_security_group" "state_lab" {
   }
 }
 
+resource "azurerm_subnet_network_security_group_association" "state_lab" {
+  subnet_id                 = azurerm_subnet.state_lab.id
+  network_security_group_id = azurerm_network_security_group.state_lab.id
+}
+
 ########################################
 # SSH Keys
 ########################################

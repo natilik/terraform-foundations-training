@@ -52,3 +52,8 @@ resource "azurerm_network_security_group" "modules_lab" {
     destination_port_range     = 22
   }
 }
+
+resource "azurerm_subnet_network_security_group_association" "modules_lab" {
+  subnet_id                 = azurerm_subnet.modules_lab.id
+  network_security_group_id = azurerm_network_security_group.modules_lab.id
+}
