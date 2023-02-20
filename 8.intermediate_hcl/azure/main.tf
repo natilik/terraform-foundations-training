@@ -38,7 +38,7 @@ resource "azurerm_resource_group" "intermediate_hcl" {
 }
 
 resource "azurerm_storage_account" "intermediate_hcl" {
-  name                     = local.storage_account_name
+  name                     = replace(local.storage_account_name, "-", "")
   resource_group_name      = azurerm_resource_group.intermediate_hcl.name
   location                 = azurerm_resource_group.intermediate_hcl.location
   account_tier             = "Standard"
@@ -50,7 +50,7 @@ resource "azurerm_storage_account" "intermediate_hcl" {
 
 # Used in lab part 2, task 3.
 # resource "azurerm_storage_account" "additional_storage_account" {
-#   name                     = local.storage_account_name
+#   name                     = "${replace(local.storage_account_name, "-", "")}2"
 #   resource_group_name      = azurerm_resource_group.intermediate_hcl.name
 #   location                 = azurerm_resource_group.intermediate_hcl.location
 #   account_tier             = "Standard"
