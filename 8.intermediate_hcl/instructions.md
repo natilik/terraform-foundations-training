@@ -1,6 +1,6 @@
 # Lab Part 1 - Data Types, Functions and Locals
 
-1. Navigate to the “8.intermediate_hcl” directory and select the relevant cloud sub-directory.
+1. Navigate to the “8.intermediate_hcl” directory and select the relevant cloud sub-directory. Be sure to change location in your terminal using the “cd” command.
 
 2. Your aws_s3_bucket/azurerm_storage_account resource is referencing a local for its name – complete the configuration of the local. You need to create a name that:
   * Has a prefix that is the result of the random_string resource.

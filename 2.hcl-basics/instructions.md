@@ -1,6 +1,6 @@
 # Lab - HCL Basics
 
-1. Navigate to the “2.hcl-basics” directory and select the relevant cloud sub-directory.
+1. Navigate to the “2.hcl-basics” directory and select the relevant cloud sub-directory (aws or azure). Be sure to change location in your terminal using the “cd” command.
 
 2. Login and configure your AWS or Azure CLI to point to a suitable non-production environment:
   * Azure – “az login” and “az account set –subscription <sub_name>”

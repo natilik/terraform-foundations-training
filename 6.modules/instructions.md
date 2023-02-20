@@ -1,8 +1,8 @@
 # Lab - Developing Modules
 
-1. We are going to “modularise” the hcl_basics code we previously used in an earlier lab.
+1. We are going to turn some previous code into re-usable modules. Navigate to the “6.modules” directory and your chosen cloud sub-directory. Be sure to change location in your terminal using the “cd” command.
 
-2. Navigate to the “6.modules” directory and your chosen cloud sub-directory.  You’ll see previous code has been broken into two modules – “aws_ec2” and “aws_networking” (or “azure_vm” and “azure_networking” for Azure).
+2. You’ll see previous code has been broken into two modules – “aws_ec2” and “aws_networking” (or “azure_vm” and “azure_networking” for Azure).
 
 3. Have a look at the main.tf under the “root-code” directory. There are a few things to populate:
 
