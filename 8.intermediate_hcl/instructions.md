@@ -25,7 +25,7 @@
 
 1. Using the same lab as we did in part 1, we’re going to make some changes.
 
-2. Change the bucket/storage account resource to create two resources instead using whichever of the looping constructs you prefer – loop or for_each. Don’t forget to ensure the relevant values are unique. 
+2. Change the bucket/storage account resource so that it can create multiple resources using whichever of the approaches you prefer – count or for_each. Don’t forget to ensure the relevant values are unique. 
 
 3. Using the commented out additional_bucket/additional_storage_account resource, uncomment and make it work, but make this a conditional resource (i.e. a variable determines if it is created). 
   * There is a variable ready to be used in variables.tf – it just needs uncommenting. Make the condition you use work with this variable and then test out enabling/disabling it.
