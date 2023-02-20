@@ -1,6 +1,6 @@
 # Lab Part - Importing
 
-1. Navigate to the “3.state” directory and select the AWS or Azure sub-directory.
+1. Navigate to the “3.state” directory and select the AWS or Azure sub-directory. Be sure to change location in your terminal using the “cd” command.
 
 2. There are three parts t1o this lab:
   * Create some resources outside of Terraform and import them.

@@ -20,7 +20,7 @@ provider "azurerm" {
 
 provider "random" {}
 
-resource "random_string" "bucket_prefix" {
+resource "random_string" "account_prefix" {
   length  = 10
   special = false
   upper   = false
@@ -38,7 +38,7 @@ resource "azurerm_resource_group" "secondary_subscription" {
 }
 
 resource "azurerm_storage_account" "primary_account" {
-  name                     = "${random_string.bucket_prefix.result}primary"
+  name                     = "${random_string.account_prefix.result}primary"
   resource_group_name      = azurerm_resource_group.primary_subscription.name
   location                 = azurerm_resource_group.primary_subscription.location
   account_tier             = "Standard"
@@ -47,7 +47,7 @@ resource "azurerm_storage_account" "primary_account" {
 
 resource "azurerm_storage_account" "secondary_subscription" {
   # Something needs changing here to use the new provider block you created above.
-  name                     = "${random_string.bucket_prefix.result}secondary"
+  name                     = "${random_string.account_prefix.result}secondary"
   resource_group_name      = azurerm_resource_group.secondary_subscription.name
   location                 = azurerm_resource_group.secondary_subscription.location
   account_tier             = "Standard"

@@ -1,6 +1,6 @@
 # Lab - Versioning
 
-1. Navigate to the “7.versioning” directory and select the relevant cloud sub-directory.
+1. Navigate to the “7.versioning” directory and select the relevant cloud sub-directory. Be sure to change location in your terminal using the “cd” command.
 
 2. Your colleague has defined some Terraform resources that they want to create, but they didn’t check the documentation. The old provider version in use doesn’t have all the resources defined. Try an init/plan/apply to see it fail. 
 

@@ -66,16 +66,18 @@ resource "azurerm_network_security_group" "provisioner_lab" {
   name                = "nsg-provisioner-${var.student_name}"
   location            = azurerm_resource_group.provisioner_lab.location
   resource_group_name = azurerm_resource_group.provisioner_lab.name
-  security_rule {
-    name                       = "PermitLabAccess"
-    priority                   = 100
-    direction                  = "Inbound"
-    access                     = "Allow"
-    protocol                   = "Tcp"
-    source_address_prefix      = data.http.current_ip.response_body
-    source_port_range          = "*"
-    destination_address_prefix = "*"
-    destination_port_range     = 22
+  dynamic security_rule {
+    for_each = toset([22, 80])
+    content {
+      name                       = "PermitLabAccess${security_rule.value}"
+      priority                   = 100
+      direction                  = "Inbound"
+      access                     = "Allow"
+      protocol                   = "Tcp"
+      source_address_prefix      = data.http.current_ip.response_body
+      source_port_range          = "*"
+      destination_address_prefix = "*"
+      destination_port_range     = security_rule.value
   }
 }
 

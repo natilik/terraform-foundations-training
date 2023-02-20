@@ -1,6 +1,6 @@
 # Lab Part 1 - Data Types, Functions and Locals
 
-1. Navigate to the “8.intermediate_hcl” directory and select the relevant cloud sub-directory.
+1. Navigate to the “8.intermediate_hcl” directory and select the relevant cloud sub-directory. Be sure to change location in your terminal using the “cd” command.
 
 2. Your aws_s3_bucket/azurerm_storage_account resource is referencing a local for its name – complete the configuration of the local. You need to create a name that:
   * Has a prefix that is the result of the random_string resource.
@@ -25,7 +25,7 @@
 
 1. Using the same lab as we did in part 1, we’re going to make some changes.
 
-2. Change the bucket/storage account resource to create two resources instead using whichever of the looping constructs you prefer – loop or for_each. Don’t forget to ensure the relevant values are unique. 
+2. Change the bucket/storage account resource so that it can create multiple resources using whichever of the approaches you prefer – count or for_each. Don’t forget to ensure the relevant values are unique. 
 
 3. Using the commented out additional_bucket/additional_storage_account resource, uncomment and make it work, but make this a conditional resource (i.e. a variable determines if it is created). 
   * There is a variable ready to be used in variables.tf – it just needs uncommenting. Make the condition you use work with this variable and then test out enabling/disabling it.
