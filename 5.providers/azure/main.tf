@@ -25,7 +25,7 @@ resource "random_string" "account_prefix" {
   special = false
   upper   = false
 }
-
+# This is a new comment.
 resource "azurerm_resource_group" "primary_subscription" {
   name     = "rg-providers-${var.student_name}-primary"
   location = "uksouth"

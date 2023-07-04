@@ -8,3 +8,4 @@ variable "student_name" {
     error_message = "The variable student_name should not contain a space."
   }
 }
+stuff
