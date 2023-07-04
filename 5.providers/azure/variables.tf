@@ -9,3 +9,4 @@ variable "student_name" {
   }
 }
 stuff
+another new line
