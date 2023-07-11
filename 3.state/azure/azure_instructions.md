@@ -14,7 +14,7 @@
 ###########################################
 -->
 
-1. First we are going to create some resources outside of Terraform, so we can try using "terraform import" to onboard them. Use "find and replace" to replace <name> in this document with your firstname-surname. CTRL-H is the keyboard shortcut in VSCode to bring up find and replace. Replace all instances.
+1. First we are going to create some resources outside of Terraform, so we can try using "terraform import" to onboard them. Use "find and replace" to replace <name> in this document with your firstname-surname. CTRL-H is the keyboard shortcut in VSCode to bring up find and replace. Replace all instances and ensure you include the <> characters.
 
 2. Paste the commands shown below (except the backticks if shown) into PowerShell. Note the Resource Group ID and VNet ID - you'll need them shortly.
 ```
