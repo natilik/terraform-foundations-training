@@ -61,7 +61,7 @@ $stateRgId = $(az group show --name $stateRgName | jq -r ".id")
 $random = $(Get-Random -Maximum 99999)
 $stateStgAcctName = $(az storage account create --name "$name$random" --resource-group $stateRgName | jq -r ".name")
 az storage container create --name tfstate --account-name $stateStgAcctName 
-echo "`n`n`nStorage Account Name is $stateStgAcctName `nContainer name is tfstate`n`n"
+echo "`n`n`nResource Group Name is $stateRgName `nStorage Account Name is $stateStgAcctName `nContainer name is tfstate`n`n"
 ```
 
 2. Add a suitable “azurerm backend” block to your top-level “terraform” block. The docs can assist you with the settings needed for this - https://www.terraform.io/language/settings/backends/azurerm. 
