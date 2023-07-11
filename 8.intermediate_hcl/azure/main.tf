@@ -18,7 +18,8 @@ provider "azurerm" {
 }
 
 locals {
-  storage_account_name = # Fill me in
+  storage_account_base_name = # Fill me in
+  storage_account_name = substr(replace(local.storage_account_base_name, "-", ""), 0, 20)
   common_tags = {
     deployer    = "terraform"
     cost_centre = "abc1234"
@@ -38,7 +39,7 @@ resource "azurerm_resource_group" "intermediate_hcl" {
 }
 
 resource "azurerm_storage_account" "intermediate_hcl" {
-  name                     = replace(local.storage_account_name, "-", "")
+  name                     = local.storage_account_name
   resource_group_name      = azurerm_resource_group.intermediate_hcl.name
   location                 = azurerm_resource_group.intermediate_hcl.location
   account_tier             = "Standard"
@@ -50,7 +51,7 @@ resource "azurerm_storage_account" "intermediate_hcl" {
 
 # Used in lab part 2, task 3.
 # resource "azurerm_storage_account" "additional_storage_account" {
-#   name                     = "${replace(local.storage_account_name, "-", "")}2"
+#   name                     = "${local.storage_account_name}2"
 #   resource_group_name      = azurerm_resource_group.intermediate_hcl.name
 #   location                 = azurerm_resource_group.intermediate_hcl.location
 #   account_tier             = "Standard"
