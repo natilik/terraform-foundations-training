@@ -5,8 +5,8 @@ terraform {
       version = "3.4.3"
     }
     azurerm = {
-      source = "hashicorp/azurerm"
-      # Please constrain me to version 3.34.0
+      source  = "hashicorp/azurerm"
+      version = "3.34.0"
     }
   }
 }
