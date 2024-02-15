@@ -15,7 +15,7 @@ Write-Host "Creating container in storage account..."
 az storage container create --name tfstate --account-name $storageName --only-show-errors | Out-Null
 
 Write-Host "`nFinished creating resources!`n"
-Write-Host "Resource group name is: $rgName" 
+Write-Host "Resource group name is: $stateRgName" 
 Write-Host "`nStorage Account name is: $storageName" 
 Write-Host "Storage Account Container name is: tfstate"
 Write-Host "Key value can be anything, but please use: terraform.tfstate"
