@@ -126,7 +126,7 @@ resource "azurerm_linux_virtual_machine" "hcl_basics_lab" {
   name                = "vm-hcl-basics-${var.student_name}"
   resource_group_name = azurerm_resource_group.hcl_basics_lab.name
   location            = azurerm_resource_group.hcl_basics_lab.location
-  size                = "Standard_B1ls"
+  size                = var.vm_size
   admin_username      = "ubuntu"
   admin_ssh_key {
     username   = "ubuntu"
