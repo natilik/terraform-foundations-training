@@ -133,7 +133,7 @@ resource "azurerm_linux_virtual_machine" "hcl_basics_lab" {
     public_key = tls_private_key.hcl_basics_lab.public_key_openssh
   }
   network_interface_ids = [
-    # REPLACE_ME
+    azurerm_network_interface.hcl_basics_lab.id
   ]
   os_disk {
     caching              = "ReadWrite"
