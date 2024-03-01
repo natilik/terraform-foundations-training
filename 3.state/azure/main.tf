@@ -1,4 +1,10 @@
 terraform {
+  backend "azurerm" {
+    storage_account_name = "mikeguy57375"
+    resource_group_name  = "rg-state-storage-mikeguy"
+    container_name       = "tfstate"
+    key                  = "terraform.tfstate"
+  }
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
@@ -41,16 +47,18 @@ data "http" "current_ip" {
 # Resource Group
 ########################################
 resource "azurerm_resource_group" "state_lab" {
-  # IMPORT ME
-  # Once you've successfully run terraform import, there will be some code to write here.
+  name     = "rg-state-${var.student_name}"
+  location = "uksouth"
 }
 
 ########################################
 # Networking
 ########################################
 resource "azurerm_virtual_network" "state_lab" {
-  # IMPORT ME
-  # Once you've successfully run terraform import, there will be some code to write here.
+  name                = "vnet-state-${var.student_name}"
+  resource_group_name = azurerm_resource_group.state_lab.name
+  location            = azurerm_resource_group.state_lab.location
+  address_space       = ["10.1.0.0/16"]
 }
 
 resource "azurerm_subnet" "state_lab" {
@@ -119,7 +127,7 @@ resource "azurerm_network_interface" "state_lab" {
   }
 }
 
-resource "azurerm_linux_virtual_machine" "state_lab" {
+resource "azurerm_linux_virtual_machine" "changed" {
   name                = "vm-state-${var.student_name}"
   resource_group_name = azurerm_resource_group.state_lab.name
   location            = azurerm_resource_group.state_lab.location
@@ -147,7 +155,7 @@ resource "azurerm_linux_virtual_machine" "state_lab" {
 ########################################
 # Dummmy file
 ########################################
-resource "local_file" "state_lab_delete_me" {
-  content  = "The contents of this file should not be deleted!"
-  filename = "./please_keep_me.txt"
-}
+# resource "local_file" "state_lab_delete_me" {
+#   content  = "The contents of this file should not be deleted!"
+#   filename = "./please_keep_me.txt"
+# }
