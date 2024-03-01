@@ -1,5 +1,5 @@
 output "vm_public_ip" {
-  value = # This needs populating with the relevant module output.
+  value = module.vm.vm_public_ip
 }
 
 output "ssh_command" {

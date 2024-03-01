@@ -23,3 +23,8 @@ variable "student_name" {
     error_message = "The variable student_name should not contain a space."
   }
 }
+
+variable "vm_size" {
+  type        = string
+  description = "The size of Azure VM to use."
+}

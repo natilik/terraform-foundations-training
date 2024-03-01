@@ -53,7 +53,7 @@ resource "azurerm_linux_virtual_machine" "modules_lab" {
   name                = "vm-modules-${var.student_name}"
   resource_group_name = var.resource_group_name
   location            = var.location
-  size                = "Standard_B1ls"
+  size                = var.vm_size
   admin_username      = "ubuntu"
   admin_ssh_key {
     username   = "ubuntu"

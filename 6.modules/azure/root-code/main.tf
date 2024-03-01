@@ -42,17 +42,18 @@ resource "azurerm_resource_group" "modules_lab" {
 
 module "networking" {
   source              = "../modules/azure_networking"
-  student_name        = # Something needs to go here.
-  resource_group_name = # A reference to the resource group above needs to go here.
-  location            = # A reference to the resource group above needs to go here.
+  student_name        = var.student_name
+  resource_group_name = azurerm_resource_group.modules_lab.name
+  location            = azurerm_resource_group.modules_lab.location
 }
 
 module "vm" {
   source              = "../modules/azure_vm"
-  student_name        = # Something needs to go here.
-  resource_group_name = # A reference to the resource group above needs to go here.
-  location            = # A reference to the resource group above needs to go here.
-  subnet_id           = # A reference to the subnet_id output from the other module needs to go here. 
+  student_name        = var.student_name
+  resource_group_name = azurerm_resource_group.modules_lab.name
+  location            = azurerm_resource_group.modules_lab.location
+  subnet_id           = module.networking.subnet_id
+  vm_size             = "Standard_B1ls"
 }
 
 resource "local_file" "module_lab" {

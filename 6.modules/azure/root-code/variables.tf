@@ -1,1 +1,4 @@
-# A variable needs defining here and to be used in the root-level main.tf file
+variable "student_name" {
+  type        = string
+  description = "The student name, separated by a hyphen."
+}
