@@ -41,16 +41,18 @@ resource "azurerm_resource_group" "modules_lab" {
 }
 
 module "networking" {
-  source = "../modules/azure_networking"
-  # This section needs populating with the relevant variable inputs 
-  # that the networking module expects.
+  source              = "../modules/azure_networking"
+  student_name        = # Something needs to go here.
+  resource_group_name = # A reference to the resource group above needs to go here.
+  location            = # A reference to the resource group above needs to go here.
 }
 
 module "vm" {
-  source = "../modules/azure_vm"
-  # This section needs populating with the relevant variable inputs 
-  # that the VM module expects.
-  # If you get stuck, take a look at https://developer.hashicorp.com/terraform/language/expressions/references#child-module-outputs
+  source              = "../modules/azure_vm"
+  student_name        = # Something needs to go here.
+  resource_group_name = # A reference to the resource group above needs to go here.
+  location            = # A reference to the resource group above needs to go here.
+  subnet_id           = # A reference to the subnet_id output from the other module needs to go here. 
 }
 
 resource "local_file" "module_lab" {
