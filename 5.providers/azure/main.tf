@@ -13,10 +13,14 @@ terraform {
 
 provider "azurerm" {
   features {}
-  subscription_id = "<primary_subscription_id>" # Please fill this placeholder with your actual primary subscription ID.
+  subscription_id = "165cba3b-8642-4aa1-bbab-35e1140dd81b"
 }
 
-# You need to create another azurerm provider block that will be usable here.
+provider "azurerm" {
+  features {}
+  alias           = "secondary"
+  subscription_id = "165cba3b-8642-4aa1-bbab-35e1140dd81b"
+}
 
 provider "random" {}
 
@@ -46,13 +50,13 @@ resource "azurerm_storage_account" "primary_account" {
 # Secondary Resources
 ###########################################
 resource "azurerm_resource_group" "secondary_subscription" {
-  # Something needs changing here to use the new provider block you created above.
+  provider = azurerm.secondary
   name     = "rg-providers-${var.student_name}-secondary"
   location = "uksouth"
 }
 
 resource "azurerm_storage_account" "secondary_subscription" {
-  # Something needs changing here to use the new provider block you created above.
+  provider                 = azurerm.secondary
   name                     = "${random_string.account_prefix.result}secondary"
   resource_group_name      = azurerm_resource_group.secondary_subscription.name
   location                 = azurerm_resource_group.secondary_subscription.location
