@@ -16,7 +16,7 @@ provider "azurerm" {
   subscription_id = "<primary_subscription_id>" # Please fill this placeholder with your actual primary subscription ID.
 }
 
-# You need to create another azurerm provider block that will be usable below.
+# You need to create another azurerm provider block that will be usable here.
 
 provider "random" {}
 
@@ -26,14 +26,11 @@ resource "random_string" "account_prefix" {
   upper   = false
 }
 
+###########################################
+# Primary Resources
+###########################################
 resource "azurerm_resource_group" "primary_subscription" {
   name     = "rg-providers-${var.student_name}-primary"
-  location = "uksouth"
-}
-
-resource "azurerm_resource_group" "secondary_subscription" {
-  # Something needs changing here to use the new provider block you created above.
-  name     = "rg-providers-${var.student_name}-secondary"
   location = "uksouth"
 }
 
@@ -43,6 +40,15 @@ resource "azurerm_storage_account" "primary_account" {
   location                 = azurerm_resource_group.primary_subscription.location
   account_tier             = "Standard"
   account_replication_type = "LRS"
+}
+
+###########################################
+# Secondary Resources
+###########################################
+resource "azurerm_resource_group" "secondary_subscription" {
+  # Something needs changing here to use the new provider block you created above.
+  name     = "rg-providers-${var.student_name}-secondary"
+  location = "uksouth"
 }
 
 resource "azurerm_storage_account" "secondary_subscription" {

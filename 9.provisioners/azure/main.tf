@@ -156,6 +156,8 @@ resource "azurerm_linux_virtual_machine" "provisioner_lab" {
     host        = self.public_ip_address
   }
 
+  # Add a new file provisioner here
+
   # Used in step 3.
   # provisioner "remote-exec" {
   #   inline = [

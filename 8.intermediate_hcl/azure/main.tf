@@ -59,7 +59,6 @@ resource "azurerm_storage_account" "intermediate_hcl" {
 #   tags = merge(
 #     {
 #       "Name" = "${local.storage_account_name}"
-#     },
-#     local.common_tags
+#     }
 #   )
 # }

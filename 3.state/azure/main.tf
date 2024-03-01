@@ -42,9 +42,7 @@ data "http" "current_ip" {
 ########################################
 resource "azurerm_resource_group" "state_lab" {
   # IMPORT ME
-  # Create me manually using the instructions in az_cli_commands.txt 
-  # then import to this empty placeholder. 
-  # Once imported, write the configuration to match the imported values.
+  # Once you've successfully run terraform import, there will be some code to write here.
 }
 
 ########################################
@@ -52,9 +50,7 @@ resource "azurerm_resource_group" "state_lab" {
 ########################################
 resource "azurerm_virtual_network" "state_lab" {
   # IMPORT ME
-  # Create me manually using the instructions in az_cli_commands.txt 
-  # then import to this empty placeholder. 
-  # Once imported, write the configuration to match the imported values.
+  # Once you've successfully run terraform import, there will be some code to write here.
 }
 
 resource "azurerm_subnet" "state_lab" {
