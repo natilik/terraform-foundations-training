@@ -156,14 +156,28 @@ resource "azurerm_linux_virtual_machine" "provisioner_lab" {
     host        = self.public_ip_address
   }
 
-  # Add a new file provisioner here
+  provisioner "file" {
+    content = templatefile(
+      "./files/index.html.tmpl",
+      {
+        server_name = self.name
+        server_ip   = self.public_ip_address
+      }
+    )
+    destination = "/home/ubuntu/index.html"
+  }
 
   # Used in step 3.
-  # provisioner "remote-exec" {
-  #   inline = [
-  #     "while [ ! -f /var/lib/cloud/instance/boot-finished ]; do echo 'Waiting for cloud-init...'; sleep 1; done",
-  #     "sudo mv /home/ubuntu/index.html /var/www/html/index.html",
-  #     "sudo systemctl restart apache2"
-  #   ]
-  # }
+  provisioner "remote-exec" {
+    inline = [
+      "while [ ! -f /var/lib/cloud/instance/boot-finished ]; do echo 'Waiting for cloud-init...'; sleep 1; done",
+      "sudo mv /home/ubuntu/index.html /var/www/html/index.html",
+      "sudo systemctl restart apache2"
+    ]
+  }
+
+  provisioner "local-exec" {
+    interpreter = ["pwsh", "-Command"]
+    command     = "./files/Invoke-TcpCheck.ps1 -PublicIP ${self.public_ip_address} -FileName results.txt"
+  }
 }
