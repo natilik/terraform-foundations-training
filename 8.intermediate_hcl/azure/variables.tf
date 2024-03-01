@@ -11,17 +11,6 @@ variable "student_name" {
 
 variable "environment" {}
 
-# Used in lab part 1, task 6 
-# variable "random_string_length" {
-#   description = "The length of the random string to be created. Must be a value between 5 and 10."
-#   type        = number
-#   validation {
-#     condition     = # Fill in this condition
-#     error_message = "The value of random_string_length should be between 5 and 10."
-#   }
-# }
-
-
 # Used in lab part 2, task 3
 # variable "additional_storage_account_enabled" {
 #   description = "Whether to enable an additional bucket."
